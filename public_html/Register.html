@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>    SOLUTIONS@cs</title>
+        <link href="bower_components/bootstrap-3.3.6/bootstrap-3.3.6/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
+ 
+    <link href="justified-nav.css" rel="stylesheet">
+        <script src="bower_components/angular/angular.js" type="text/javascript"></script>
+        <script src="form.js" type="text/javascript"></script>
+    </head>
+    <body ng-app="myapp" ng-controller="form">
+        <div class="container">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="page-header" ><h3>REGISTRATION FORM </h3> </div>
+                <form name="userForm" ng-submit="submitForm()"  class="jumbotron" >
+                    <div class="form-group"  ng-class="{ 'has-error' : userForm.name.$invalid)}"> 
+                        <label>Name</label>
+                        <input type="text" name="name" class="form-control" ng-model="user.name" placeholder="Your Name" ng-required="true">
+                        <p ng-show="userForm.name.$error.invalid" class="help-block">You name is required.</p>
+                    </div>
+
+                    <div class="form-group" ng-class="{ 'has-error' : userForm.username.$invalid }">
+                        <label>Username</label>
+                        <input type="text" name="username" class="form-control" ng-model="user.username" placeholder="Your Username" ng-minlength="3" ng-maxlength="8" ng-required="true">
+                        <p ng-show="userForm.username.$error.invalid " class="help-block">You username is required.</p>
+                        <p ng-show="userForm.username.$error.minlength " class="help-block">Username is too short.</p>
+                        <p ng-show="userForm.username.$error.maxlength " class="help-block">Username is too long.</p>
+
+                    </div>
+
+
+                    <div class="form-group" ng-class="{ 'has-error' : userForm.password.$invalid }">
+                        <label>Password</label>
+                        <input type="Password" name="password" class="form-control" ng-model="user.password" placeholder="Your Password" ng-required="true">
+                        <p ng-show="userForm.password.$error.invalid" class="help-block">Your password is required.</p>
+                    </div>
+
+
+                    <div class="form-group" ng-class="{ 'has-error' : userForm.confirmPassword.$invalid && (userForm.confirmPassword.$dirty || submitted)}">
+                        <label>Confirm Password</label>
+                        <input type="Password" name="confirmPassword" class="form-control" ng-model="user.confirmPassword" placeholder="Confirm Your Password" ng-compare="password" ng-required="true">
+                        <p ng-show="userForm.confirmPassword.$error.reqiured && (userForm.confirmPassword.$dirty || submitted)" class="help-block">Your confirm password is required.</p>
+                        <p ng-show="userForm.confirmPassword.$error.compare && (userForm.confirmPassword.$dirty || submitted) " class="help-block">Confirm password does not match.</p>
+                    </div>
+
+
+                    <div class="form-group" ng-class="{ 'has-error' : userForm.email.$invalid}">
+                        <label>Email</label>
+                        <input type="email" name="email" class="form-control" ng-model="user.email" placeholder="Your Email Address" ng-required="true">
+                        <p ng-show="userForm.email.$error.invalid" class="help-block">Email is required.</p>
+                        <p ng-show="userForm.email.$error.email" class="help-block">Enter a valid email.</p>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </form>
+            </div>
+        </div>
+        <br />
+        <script src="bower_components/bootstrap-3.3.6/bootstrap-3.3.6/js/controller.js" type="text/javascript"></script>
+        <script src="bower_components/bootstrap-3.3.6/bootstrap-3.3.6/js/tests/vendor/jquery.min.js" type="text/javascript"></script>
+        <script src="bower_components/bootstrap-3.3.6/bootstrap-3.3.6/dist/js/bootstrap.min.js" type="text/javascript"></script>
+
+    </body>
+</html>
